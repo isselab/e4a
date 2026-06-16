@@ -498,6 +498,14 @@ h1 {
   min-height: 100%;
 }
 
+.organizer-photo {
+  width: min(100%, 170px);
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid rgba(153, 189, 255, 0.22);
+}
+
 .organizer-card a {
   margin-top: auto;
   color: var(--accent);
@@ -630,4 +638,34 @@ footer {
     transform: none;
     opacity: 1;
   }
+}
+
+.signup-panel {
+  border-radius: var(--radius-xl);
+  padding: clamp(1.55rem, 3vw, 2.25rem);
+  background:
+    linear-gradient(135deg, rgba(124, 242, 210, 0.10), rgba(146, 168, 255, 0.10)),
+    rgba(8, 18, 31, 0.72);
+  border: 1px solid rgba(153, 189, 255, 0.18);
+  box-shadow: var(--shadow);
+}
+
+.signup-panel h2 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  max-width: 14ch;
+  margin-bottom: 1rem;
+}
+
+.signup-panel p {
+  max-width: 42rem;
+  color: #d7e2f4;
+}
+
+.signup-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.6rem;
 }
