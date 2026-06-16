@@ -500,6 +500,14 @@ h1 {
   min-height: 100%;
 }
 
+.organizer-photo {
+  width: min(100%, 170px);
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid rgba(153, 189, 255, 0.22);
+}
+
 .organizer-card a {
   margin-top: auto;
   color: var(--accent);
