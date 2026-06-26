@@ -455,6 +455,10 @@ h1 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+#why .focus-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .focus-card,
 .format-card,
 .detail-card,
@@ -769,6 +773,10 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
+  #why .focus-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .story-main,
   .story-side {
     grid-column: span 12;
@@ -795,6 +803,10 @@ footer {
   .program-grid,
   .partner-grid,
   .organizer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #why .focus-grid {
     grid-template-columns: 1fr;
   }
 
