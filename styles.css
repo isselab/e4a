@@ -603,7 +603,6 @@ h1 {
 }
 
 .organizer-card a {
-  margin-top: auto;
   color: var(--accent);
   font-weight: 600;
   width: fit-content;
