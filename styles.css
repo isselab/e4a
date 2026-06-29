@@ -566,6 +566,96 @@ h1 {
   text-transform: uppercase;
 }
 
+/* ------------------------------------------------------------------ *
+   Summit banner: full-bleed SVG mountain at the top of the page with the
+   organizers placed along the ridge. Short fixed height.
+ * ------------------------------------------------------------------ */
+.summit-banner {
+  padding: 0;
+  margin: 0;
+}
+
+.summit-scene {
+  position: relative;
+  width: 100%;
+  height: clamp(120px, 16vw, 185px);
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.summit-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.summit-label {
+  position: absolute;
+  left: 50.5%;
+  top: 43%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+  font-weight: 700;
+  font-size: clamp(0.7rem, 1.7vw, 1.15rem);
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  pointer-events: none;
+}
+
+.summit-climbers {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 2;
+}
+
+.climber {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  width: max-content;
+}
+
+.climber img {
+  width: clamp(2.1rem, 4.6vw, 3.4rem);
+  height: clamp(2.1rem, 4.6vw, 3.4rem);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 3px 9px rgba(20, 22, 28, 0.28);
+  background: var(--panel);
+}
+
+.climber--peak img {
+  width: clamp(2.5rem, 5.4vw, 4rem);
+  height: clamp(2.5rem, 5.4vw, 4rem);
+  border-color: #f4f7fb;
+}
+
+.climber-name {
+  padding: 0.04rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(20, 35, 59, 0.82);
+  color: #ffffff;
+  font-size: clamp(0.55rem, 1.1vw, 0.72rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  backdrop-filter: blur(2px);
+}
+
 .organizer-grid {
   /* More compact grid: four columns on wide screens */
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -850,6 +940,16 @@ footer {
 
   .organizer-photo--wide {
     max-width: 15rem;
+  }
+
+  /* Mobile: keep the banner short but give a little more height so the
+     seven avatars stay clustered around the peak without crowding. */
+  .summit-scene {
+    height: clamp(110px, 30vw, 150px);
+  }
+
+  .climber img {
+    border-width: 2px;
   }
 
   .topbar-inner,
