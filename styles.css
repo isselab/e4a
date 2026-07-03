@@ -812,6 +812,16 @@ h1 {
   border-color: #1a2c49;
 }
 
+.partner-card-rub img {
+  width: min(100%, 11rem);
+  max-height: 3.2rem;
+}
+
+.partner-card-rub span {
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
 .partner-card img {
   max-height: 3.8rem;
   width: min(100%, 13rem);
@@ -829,19 +839,52 @@ h1 {
 }
 
 .partner-card-lab {
-  gap: 0.9rem;
+  position: relative;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  min-height: 8rem;
+  background: #e2e9f1;
+  border-color: #e2e9f1;
+}
+
+.partner-card-lab:hover,
+.partner-card-lab:focus-visible {
+  background: #d6dfeb;
+  border-color: #d6dfeb;
 }
 
 .partner-lab-logo {
-  width: min(100%, 8rem);
-  border-radius: 6px;
-  border: 1px solid var(--line);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8.5rem;
+  height: 100%;
+  max-width: none;
+  max-height: none !important;
+  object-fit: contain;
+  object-position: left center;
+  border-radius: 0;
+  border: 0;
 }
 
 .partner-card-lab strong {
-  color: var(--text);
+  color: #1b2942;
   font-size: 1.05rem;
   line-height: 1.2;
+  align-self: center;
+  flex: 1 1 auto;
+  padding: 1rem 0.75rem 1rem 6.5rem;
+  white-space: nowrap;
+}
+
+.partner-card-software-center img {
+  width: min(100%, 14rem);
+  max-height: 3.4rem;
 }
 
 footer {
@@ -927,6 +970,28 @@ footer {
   .program-list li {
     grid-template-columns: 1fr;
     gap: 0.2rem;
+  }
+
+  .partner-card-lab {
+    position: static;
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .partner-lab-logo {
+    position: static;
+    width: min(100%, 8rem);
+    height: auto;
+    max-height: 4rem;
+    align-self: center;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+
+  .partner-card-lab strong {
+    align-self: auto;
+    padding: 0;
   }
 
   .topic-list {
