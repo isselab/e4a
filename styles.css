@@ -159,6 +159,76 @@ img {
   color: #ffffff;
 }
 
+/* ------------------------------------------------------------------ *
+   Mobile hamburger toggle. Hidden on desktop; shown at <=980px where
+   the inline nav collapses into a dropdown panel.
+ * ------------------------------------------------------------------ */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.4rem;
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  border-color: var(--accent);
+}
+
+.nav-toggle-bars {
+  position: relative;
+  display: block;
+  width: 1.25rem;
+  height: 0.85rem;
+}
+
+.nav-toggle-bars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 200ms ease, opacity 160ms ease, top 200ms ease;
+}
+
+.nav-toggle-bars span:nth-child(1) {
+  top: 0;
+}
+
+.nav-toggle-bars span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-toggle-bars span:nth-child(3) {
+  top: 100%;
+  transform: translateY(-100%);
+}
+
+/* Animate the bars into an "X" when the menu is open. */
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars span:nth-child(3) {
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
 section {
   /* Reduced vertical spacing between sections */
   padding: 2rem 0;
@@ -964,8 +1034,107 @@ footer {
     grid-column: span 12;
   }
 
-  .nav {
+  /* Below the desktop layout the inline nav needs more room. Shrink the
+     brand (drop the subtitle, tighten the title) so all links keep fitting
+     next to it and the hamburger doesn't appear while there's still space. */
+  .brand-copy span {
     display: none;
+  }
+
+  .brand-copy strong {
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+  }
+
+  /* Let the brand be the flexible part that shrinks/ellipsizes, and keep the
+     nav on a single row so links use the free space instead of wrapping down
+     under the logo. */
+  .brand {
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .nav {
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    gap: 0.85rem;
+  }
+
+  .nav a {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 720px) {
+  /* Keep the header a single row (brand left, hamburger right). A later
+     mobile rule sets .topbar-inner to column for the footer's sake; the
+     header must stay horizontal so the toggle sits beside the logo. */
+  .topbar-inner {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  /* Brand shrinks/ellipsizes as needed so the toggle always stays visible
+     at the far right, on the same row. */
+  .brand {
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* Collapse the inline nav into a dropdown panel below the header.
+     Hidden by default; the toggle button adds `is-open` to reveal it. */
+  .nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: 0.4rem 0;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(20, 22, 28, 0.12);
+    /* Collapsed state */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
+  }
+
+  .nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 180ms ease, transform 180ms ease, visibility 0s;
+  }
+
+  .nav a {
+    padding: 0.85rem 1.25rem;
+    font-size: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .nav a:first-child {
+    border-top: 0;
+  }
+
+  .nav .invite-pill {
+    margin: 0.6rem 1.25rem 0.4rem;
+    padding: 0.7rem 0.9rem;
+    text-align: center;
+    border-radius: 4px;
   }
 }
 
@@ -1052,7 +1221,6 @@ footer {
     border-width: 2px;
   }
 
-  .topbar-inner,
   .footer-row {
     align-items: flex-start;
     flex-direction: column;
@@ -1080,5 +1248,11 @@ footer {
     transition: none;
     transform: none;
     opacity: 1;
+  }
+
+  /* Keep the menu functional but drop the motion (state stays instant). */
+  .nav-toggle-bars span,
+  .nav {
+    transition: none;
   }
 }
