@@ -592,6 +592,30 @@ h1 {
   display: block;
 }
 
+/* Sun overlay (HTML element above the SVG). We position it to match the
+   original SVG circle at cx=1030, cy=42 r=24 in the 1200x185 viewBox.
+   It remains a perfect circle by default and becomes elliptical on very
+   wide viewports. */
+.sun-overlay {
+  position: absolute;
+  /* center the overlay at the circle's viewBox coordinates (cx=1030, cy=42)
+     relative to the SVG viewBox (1200x185). Percentages map to the
+     containing block's width/height which match the SVG filling the scene.
+     Use translate(-50%,-50%) to position the element by its center. */
+  left: 85.833333%; /* 1030 / 1200 * 100% */
+  top: 22.702703%;  /* 42 / 185 * 100% */
+  height: calc(48 / 185 * 100%); /* diameter relative to viewBox height */
+  aspect-ratio: 1 / 1; /* keep square; width is computed from height */
+  background: #ffffff;
+  opacity: 0.7;
+  border-radius: 50%;
+  pointer-events: none;
+  transform-origin: center center;
+  transform: translate(-50%, -50%);
+  transition: transform 240ms ease;
+  z-index: 1;
+}
+
 .summit-label {
   position: absolute;
   left: 50.5%;
@@ -902,13 +926,16 @@ footer {
   padding-top: 1.3rem;
 }
 
-.reveal {
+/* Content is visible by default. The hidden start state is only applied when
+   JavaScript is available (the script adds `js-reveal` to <html>), so the
+   scroll fade-in is progressive enhancement and never blanks the page. */
+.js-reveal .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 650ms ease, transform 650ms ease;
 }
 
-.reveal.is-visible {
+.js-reveal .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -939,6 +966,14 @@ footer {
 
   .nav {
     display: none;
+  }
+}
+
+/* On very wide screens make the sun slightly elliptical (wider than tall).
+   Adjust min-width as desired to control when the effect kicks in. */
+@media (min-width: 1400px) {
+  .sun-overlay {
+    transform: translate(-50%, -50%) scaleX(1.6) scaleY(0.9);
   }
 }
 
@@ -1038,8 +1073,8 @@ footer {
     scroll-behavior: auto;
   }
 
-  .reveal,
-  .reveal.is-visible,
+  .js-reveal .reveal,
+  .js-reveal .reveal.is-visible,
   .button,
   .ghost-button {
     transition: none;
