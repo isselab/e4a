@@ -934,34 +934,30 @@ h1 {
 
 .partner-card-lab {
   position: relative;
+  display: flex; /* Ensure flex properties work */
   flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
   gap: 0;
   padding: 0;
   overflow: hidden;
-  text-align: left;
+  text-align: center; /* Optional: Center text if needed */
   min-height: 8rem;
   background: #e2e9f1;
   border-color: #e2e9f1;
 }
 
-.partner-card-lab:hover,
-.partner-card-lab:focus-visible {
-  background: #d6dfeb;
-  border-color: #d6dfeb;
-}
-
 .partner-lab-logo {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%; /* Move top edge to middle of parent */
+  left: 50%; /* Move left edge to middle of parent */
+  transform: translate(-50%, -50%); /* Shift back by half of logo's width/height */
   width: 8.5rem;
   height: 100%;
   max-width: none;
   max-height: none !important;
   object-fit: contain;
-  object-position: left center;
+  object-position: center; /* Center the image within its container */
   border-radius: 0;
   border: 0;
 }
