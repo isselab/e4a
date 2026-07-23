@@ -977,6 +977,22 @@ h1 {
   max-height: 3.4rem;
 }
 
+.partner-card-vwif {
+  background: #0b2d5c;
+  border-color: #0b2d5c;
+  color: #f3f6fb;
+}
+
+.partner-card-vwif:hover,
+.partner-card-vwif:focus-visible {
+  background: #133a70;
+  border-color: #133a70;
+}
+
+.partner-card-vwif strong {
+  color: inherit;
+}
+
 footer {
   padding: 1.5rem 0 4rem;
 }
